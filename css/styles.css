@@ -1,5 +1,59 @@
-.restaurant-card {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
 }
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.restaurant-chain {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.title{
+    background: #f9f9f9;
+    padding:10px;
+}
+.chain-info {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+.chain-info-detail{
+    padding: 20px;
+}
+.chain-info h2 {
+    color: #333;
+}
+
+.chain-info p, .chain-info h3 {
+    color: #666;
+}
+
+.employees ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.employees li {
+    background: #fff;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.chain-info-body {
+    display: none;
+  }
+  

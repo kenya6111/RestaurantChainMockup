@@ -75,7 +75,7 @@ class User {
     public function toHTML() {
         return sprintf("
             <div class='user-card'>
-            h1
+            
                 <div class='avatar'>Restaurant Chain Information</div>
                 <h2>%s %s</h2>
                 <p>%s</p>
@@ -101,8 +101,7 @@ class User {
                  - Email: {$this->email}
                  - Phone Number: {$this->phoneNumber}
                  - Address: {$this->address}
-                 - Birth Date: {$this->birthDate}
-                 - Is Active: {$this->isActive}
+                 - Birth Date: {$this->birthDate->format('Y-m-d')}
                  - Role: {$this->role}";
     }
 
@@ -112,11 +111,9 @@ class User {
             'firstName' => $this->firstName,
             'lastName' => $this->lastName,
             'email' => $this->email,
-            'password' => $this->password,
             'phoneNumber' => $this->phoneNumber,
             'address' => $this->address,
             'birthDate' => $this->birthDate,
-            'isActive' => $this->isActive,
             'role' => $this->role
         ];
     }

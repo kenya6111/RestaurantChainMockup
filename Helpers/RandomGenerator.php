@@ -10,37 +10,6 @@ use Models\Employee;
 use Models\RestaurantLocation;
 
 class RandomGenerator implements FileConvertible {
-    //ここでemployeeのインスタンスを生成する
-    // public static function user(): User {
-    //     $faker = Factory::create();
-
-    //     return new User(
-    //         $faker->randomNumber(),
-    //         $faker->firstName(),
-    //         $faker->lastName(),
-    //         $faker->email,
-    //         $faker->password,
-    //         $faker->phoneNumber,
-    //         $faker->address,
-    //         $faker->dateTimeThisCentury,
-    //         $faker->dateTimeBetween('-10 years', '+20 years'),
-    //         $faker->randomElement(['admin', 'user', 'editor'])
-    //     );
-    // }
-
-    //ここで
-
-    // public static function users(int $min, int $max): array {
-    //     $faker = Factory::create();
-    //     $users = [];
-    //     $numOfRestaurant = $faker->numberBetween($min, $max);
-
-    //     for ($i = 0; $i < $numOfRestaurant; $i++) {
-    //         $users[] = self::user();
-    //     }
-
-    //     return $users;
-    // }
     public static function employee(): Employee {
         $faker = Factory::create();
         $jobTypeNumber = $faker ->numberBetween(0, 3);
@@ -69,7 +38,7 @@ class RandomGenerator implements FileConvertible {
 
         return new RestaurantLocation(
             $faker->company(),
-            $faker->year(),
+            $faker->address(),
             $faker->catchPhrase(),
             $faker->url,
             $faker->phoneNumber,
@@ -122,6 +91,35 @@ class RandomGenerator implements FileConvertible {
         }
 
         return $restaurantChains;
+    }
+
+    public static function user(): User {
+        $faker = Factory::create();
+
+        return new User(
+            $faker->randomNumber(),
+            $faker->firstName(),
+            $faker->lastName(),
+            $faker->email,
+            $faker->password,
+            $faker->phoneNumber,
+            $faker->address,
+            $faker->dateTimeThisCentury,
+            $faker->dateTimeBetween('-10 years', '+20 years'),
+            $faker->randomElement(['admin', 'user', 'editor'])
+        );
+    }
+
+    public static function users(int $min, int $max): array {
+        $faker = Factory::create();
+        $users = [];
+        $numOfUsers = $faker->numberBetween($min, $max);
+
+        for ($i = 0; $i < $numOfUsers; $i++) {
+            $users[] = self::user();
+        }
+
+        return $users;
     }
 
     public function toString():string{

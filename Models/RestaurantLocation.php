@@ -24,6 +24,7 @@ class RestaurantLocation implements FileConvertible{
         $this->state = $state; 
         $this->zipCode = $zipCode;
         $this->employees = $employees; 
+        $this->isOpen =$isOpen;
         $this->hasDriveThrought = $hasDriveThrought;
     }
 
@@ -41,6 +42,13 @@ class RestaurantLocation implements FileConvertible{
     }
     public function toArray(): array{
         return [];
+    }
+
+    public function getAddress(){
+        return $this->address;
+    }
+    public function getZipcode(){
+        return $this->zipCode;
     }
 
 

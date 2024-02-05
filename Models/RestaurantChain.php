@@ -35,21 +35,39 @@ class RestaurantChain extends Company implements FileConvertible{
     }
     public function toHTML(): string{
         return sprintf("
-            <div class='user-card'>
-                <div class='avatar'>Restaurant Chain Information</div>
-                <h2>%s %s</h2>
-                <p>%s</p>
-                <p>%s</p>
-                <p>%s</p>
-                <p>Birth Date: %s</p>
-                <p>Membership Expiration Date: %s</p>
-                <p>Role: %s</p>
+            <div class='container'>
+                <h1>Restaurant Chain Roghan, %s</h1>
+                <div class='restaurant-chain'>
+                    <div class='chain-info'>
+                        <div class ='title'>
+                            Restaurant Chain Information
+                        </div>
+                        <div class='chain-info-detail'>
+                            <div class='chain-header'>
+                                <h2>%s <span class='toggle-info'>^</span></h2>
+                            </div>
+                            <div class='chain-info-body'>
+                                <p>Company Name: %s</p>
+                                <p>Address: %s ZipCode: %s</p>
+                                <div class='employees'>
+                                    <h3>Employees:</h3>
+                                    <ul>
+                                        <li>ID: 9, Job Title: cashier, Lyric Predovic, Start Date: 2019-01-01</li>
+                                        <li>ID: 230925964, Job Title: chef, Constance Jaskolski, Start Date: 2020-04-25</li>
+                                        <li>ID: 2514, Job Title: cashier, Joaquin McKenzie, Start Date: 2023-03-24</li>
+                                        %s
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>",
             $this->companyname,
-            $this->cuisineType."料理の種類",
-            $this->numberOfLocation,
-            $this->hasDriveThrough,
-            $this->establishedYear,
+            $this->cuisineType,
+            $this->cuisineType,
+            $this->Restaurantlocation[0]->getAddress(),
+            $this->Restaurantlocation[0]->getZipcode(),
             $this->parentCompany,
             $this->cuisineType,
             $this->cuisineType
