@@ -57,3 +57,6 @@ h1 {
     display: none;
   }
   
+  ul li {
+    list-style: none;
+}
