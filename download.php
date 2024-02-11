@@ -4,37 +4,34 @@ use Helpers\RandomGenerator;
 // composerの依存関係のオートロード
 require_once 'vendor/autoload.php';
 
-// POSTリクエストからパラメータを取得
-$count = $_POST['count'] ?? 5;
-$format = $_POST['format'] ?? 'html';
 
-// パラメータが正しい形式であることを確認
-$count = (int)$count;
+    // POSTリクエストがある場合にのみ処理を実行
+    $NumberOfrestaurant = $_POST['restaurant'] ?? 5;
+    $NumberOfemployees = $_POST['employees'] ?? 5;
+    $NumberOffee = $_POST['fee'] ?? 5;
+    $NumberOflocations = $_POST['locations'] ?? 5;
+    $NumberOfzipcode = $_POST['zipcode'] ?? 5;
+    $format = $_POST['format'] ?? 'markdown';
 
-// ユーザーを生成
-$users = RandomGenerator::users($count, $count);
+    // ユーザーの生成
+    $restaurantChains = RandomGenerator::restaurantchains($NumberOfrestaurant, $NumberOfemployees, $NumberOffee, $NumberOflocations, $NumberOfzipcode);
 
-if ($format === 'markdown') {
-    header('Content-Type: text/markdown');
-    header('Content-Disposition: attachment; filename="users.md"');
-    foreach ($users as $user) {
-        echo $user->toMarkdown();
+    if ($format === 'markdown') {
+        header('Content-Type: text/markdown');
+        header('Content-Disposition: attachment; filename="restaurantChains.md"');
+        foreach ($restaurantChains as $restaurantChain) {
+            echo $restaurantChain->toMarkdown();
+        }
+    } elseif ($format === 'json') {
+        header('Content-Type: application/json');
+        header('Content-Disposition: attachment; filename="restaurantChains.json"');
+        $restaurantChains = array_map(fn($restaurantChains) => $restaurantChains->toArray(), $restaurantChains);
+        echo json_encode($restaurantChains);
+    } elseif ($format === 'txt') {
+        header('Content-Type: text/plain');
+        header('Content-Disposition: attachment; filename="restaurantChains.txt"');
+        foreach ($restaurantChains as $restaurantChain) {
+            echo $restaurantChain->toString();
+        }
+        exit;
     }
-} elseif ($format === 'json') {
-    header('Content-Type: application/json');
-    header('Content-Disposition: attachment; filename="users.json"');
-    $usersArray = array_map(fn($user) => $user->toArray(), $users);
-    echo json_encode($usersArray);
-} elseif ($format === 'txt') {
-    header('Content-Type: text/plain');
-    header('Content-Disposition: attachment; filename="users.txt"');
-    foreach ($users as $user) {
-        echo $user->toString();
-    }
-} else {
-    // HTMLをデフォルトに
-    header('Content-Type: text/html');
-    foreach ($users as $user) {
-        echo $user->toHTML();
-    }
-}

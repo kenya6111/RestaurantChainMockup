@@ -14,6 +14,7 @@ class RandomGenerator implements FileConvertible {
         $faker = Factory::create();
         $jobTypeNumber = $faker ->numberBetween(0, 3);
         $jobTypeList=["receptionist","kitchen","manager","hall"];
+        //print("employee started!!!!!!!!!!!!!!!!!!!!!");
 
         $awardNumber = $faker ->numberBetween(0, 3);
         $awardList=["awardA","awardB","awardC","awardD"];  
@@ -29,6 +30,7 @@ class RandomGenerator implements FileConvertible {
     public static function restaurantLocation(int $NumberOfEmployees, int $NumberOffee, int $NumberOfzipcode): RestaurantLocation {
         $faker = Factory::create();
         $employees=[];
+        //print("restaurantlocation started!!!!!!!!!!!!!!!!!!!!!");
 
         //従業員リストを生成
         for($i = 0;$i < $NumberOfEmployees; $i++ ){
@@ -50,6 +52,7 @@ class RandomGenerator implements FileConvertible {
     public static function restaurantchain(int $NumberOfemployees, int $NumberOffee, int $NumberOflocations, int  $NumberOfzipcode): RestaurantChain {
         $faker = Factory::create();
         $restaurantLocations=[];
+        //print("restaurantchain started!!!!!!!!!!!!!!!!!!!!!");
 
         //restaurantLocationリストを生成
         for($i = 0;$i < $NumberOflocations; $i++ ){
@@ -82,6 +85,8 @@ class RandomGenerator implements FileConvertible {
     public static function restaurantchains(int $NumberOfrestaurant, int $NumberOfemployees, int $NumberOffee, int  $NumberOflocations, int $NumberOfzipcode): array {
         $faker = Factory::create();
         $restaurantChains = [];
+        //print("restaurantchains started!!!!!!!!!!!!!!!!!!!!!");
+
 
         for ($i = 0; $i < $NumberOfrestaurant; $i++) {
             $restaurantChains[] = self::restaurantchain($NumberOfemployees,  $NumberOffee,   $NumberOflocations,  $NumberOfzipcode);

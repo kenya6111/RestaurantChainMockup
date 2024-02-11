@@ -74,7 +74,7 @@ class RestaurantChain extends Company implements FileConvertible{
         );
     }
     public function toMarkdown(): string {
-        return "## User: {$this->chainId} {$this->Restaurantlocation}
+        return "## User: {$this->chainId}
                  - Email: {$this->cuisineType}
                  - Phone Number: {$this->numberOfLocation}
                  - Address: {$this->hasDriveThrough}

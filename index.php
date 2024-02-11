@@ -6,41 +6,7 @@ spl_autoload_register();
 // composerの依存関係のオートロード
 require_once 'vendor/autoload.php';
 use Helpers\RandomGenerator;
-
-$NumberOfrestaurant = $_POST['restaurant'] ?? 5;
-$NumberOfemployees = $_POST['employees'] ?? 5;
-$NumberOffee = $_POST['fee'] ?? 5;
-$NumberOflocations = $_POST['locations'] ?? 5;
-$NumberOfzipcode = $_POST['zipcode'] ?? 5;
-$format = $_POST['format'] ?? 'markdown';
-
-// ユーザーの生成
-$restaurantChains = RandomGenerator::restaurantchains($NumberOfrestaurant, $NumberOfemployees, $NumberOffee, $NumberOflocations, $NumberOfzipcode);
-
-if ($format === 'markdown') {
-    header('Content-Type: text/markdown');
-    header('Content-Disposition: attachment; filename="users.md"');
-    foreach ($restaurantChains as $restaurantChain) {
-        echo $restaurantChain->toMarkdown();
-    }
-} elseif ($format === 'json') {
-    header('Content-Type: application/json');
-    header('Content-Disposition: attachment; filename="users.json"');
-    $usersArray = array_map(fn($user) => $user->toArray(), $users);
-    echo json_encode($usersArray);
-} elseif ($format === 'txt') {
-    header('Content-Type: text/plain');
-    header('Content-Disposition: attachment; filename="users.txt"');
-    foreach ($users as $user) {
-        echo $user->toString();
-    }
-} else {
-    // HTMLをデフォルトに
-    header('Content-Type: text/html');
-    foreach ($users as $user) {
-        echo $user->toHTML();
-    }
-}
+$restaurantChains = RandomGenerator::restaurantchains(5, 5, 5, 5, 5);
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +18,7 @@ if ($format === 'markdown') {
     <link rel="stylesheet" href="css\styles.css"> 
 </head>
 <body>
-    <form action="index.php" method="post">
+    <form action="download.php" method="post">
         <ul>
             <li>    
                 <label for="restaurant">Number of Restaurant:</label>
@@ -83,7 +49,7 @@ if ($format === 'markdown') {
                 </select>
             </li>
             <button type="submit">Generate</button>
-    </ul>
+        </ul>
     </form>
     <h1>Restaurant Chain</h1>
     <?php foreach ($restaurantChains as $restaurantChain): ?>
